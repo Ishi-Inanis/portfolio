@@ -1,0 +1,1 @@
+<h2 class="text-xl sm:text-2xl"><slot/></h2>

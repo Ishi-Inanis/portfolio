@@ -2,14 +2,10 @@
 module.exports = {
   content: [
     './index.html',
-    './src/**/*.{js,ts,svelte}',
-    './node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}',
+    './src/**/*.{js,ts,svelte}'
   ],
   theme: {
     extend: {},
   },
-  plugins: [
-    require('flowbite/plugin')
-  ],
-  darkMode: 'class',
+  plugins: [],
 }
