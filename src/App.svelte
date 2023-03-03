@@ -6,6 +6,7 @@
   import Github from './lib/Github.svelte';
   import Gitlab from './lib/Gitlab.svelte';
   import Telegram from './lib/Telegram.svelte';
+  import Teletype from './lib/Teletype.svelte';
 
   const skills = {
         main: [{
@@ -75,6 +76,9 @@
             color: 'blue'
           }],
           technologies: [{
+            name: 'Jest',
+            color: 'rose'
+          }, {
             name: 'Git',
             color: 'red'
           }, {
@@ -120,32 +124,16 @@
             name: 'WordPress',
             color: 'sky'
           }],
-          patterns: [{}],
+          patterns: [],
         },
-        soft: [{}],
-        other: [{
-          name: 'Составление ТЗ'
+        soft: [{
+          name: 'Умею находить общий язык с командой',
+          color: ''
         }, {
-          name: 'Обучение и развитие'
-        }, {
-          name: 'Наставничество'
-        }, {
-          name: 'Постановка задач'
-        }, {
-          name: 'Декомпозиция задач'
-        }, {
-          name: 'Взаимодействие с заказчиком'
-        }, {
-          name: 'Кроссбраузерная верстка'
-        }, {
-          name: 'Разработка ПО'
-        }, {
-          name: 'Адаптивная верстка'
-        }, {
-          name: 'Веб-разработка'
-        }, {
-          name: 'Рефакторинг кода'
+          name: 'Способен самообучаться',
+          color: ''
         }],
+        other: [],
         tools: [{
           name: 'PhpStorm',
           color: 'purple'
@@ -228,24 +216,26 @@
       books = [{
         name: 'Чистая архитектура. Искусство разработки программного обеспечения',
         author: 'Роберт Мартин'
-      }];
+      }],
+      languages = [
+        'Русский — Родной',
+        'Английский — A2 — Элементарный'
+      ];
 </script>
-
-<!--статьи-->
 
 <Header avatar="/avatar.jpg">
   <span slot="name">Алексеев Пётр Сергеевич</span>
   <span slot="desc">Full stack developer</span>
   <a class="block text-blue-500" href="mailto:alexeev.dauwalter@gmail.com">alexeev.dauwalter@gmail.com</a>
-  <nav class="flex flex-wrap gap-4 justify-center items-center">
-    <a class="block dark:invert text-blue-500 w-8 h-8"
+  <nav class="flex flex-wrap gap-8 justify-center items-center">
+    <a class="block dark:invert text-blue-500 w-10 h-10"
        href="https://github.com/ishi-inanis">
       <Github/>
     </a>
-    <a class="block text-blue-500 w-8 h-8" href="https://gitlab.com/ishi-inanis">
+    <a class="block text-blue-500 w-10 h-10" href="https://gitlab.com/ishi-inanis">
       <Gitlab/>
     </a>
-    <a class="block text-blue-500 w-8 h-8" href="https://t.me/alexeev_dauwalter">
+    <a class="block text-blue-500 w-10 h-10" href="https://t.me/alexeev_dauwalter">
       <Telegram/>
     </a>
   </nav>
@@ -261,122 +251,175 @@
       JS. Также изучал C++, C#, Rust, Java и Kotlin.</p>
   </Section>
 
-  <Section title="Основной стек">
-    <section class="flex flex-wrap gap-2 justify-center">
-      {#each skills.main as { name, color }}
-        {#if name}
-          <Badge {name} {color}/>
+  {#if skills.main?.length}
+    <Section title="Основной стек">
+      <section class="flex flex-wrap gap-2 justify-center">
+        {#each skills.main as { name, color }}
+          {#if name}
+            <Badge {name} {color}/>
+          {/if}
+        {/each}
+      </section>
+    </Section>
+  {/if}
+
+  {#if skills.hard || skills.soft || skills.tools || skills.other}
+    <Section title="Ключевые навыки">
+      {#if skills.hard?.languages.length}
+        <Article title="Языки программирования">
+          <section class="flex flex-wrap gap-2 justify-center">
+            {#each skills.hard.languages as { name, color }}
+              {#if name}
+                <Badge {name} {color}/>
+              {/if}
+            {/each}
+          </section>
+        </Article>
+      {/if}
+
+      {#if skills.hard?.technologies.length}
+        <Article title="Технологии">
+          <section class="flex flex-wrap gap-2 justify-center">
+            {#each skills.hard.technologies as { name, color }}
+              {#if name}
+                <Badge {name} {color}/>
+              {/if}
+            {/each}
+          </section>
+        </Article>
+      {/if}
+
+      {#if skills.hard?.patterns.length}
+        <Article title="Паттерны">
+          <section class="flex flex-wrap gap-2 justify-center">
+            {#each skills.hard.patterns as { name, color }}
+              {#if name}
+                <Badge {name} {color}/>
+              {/if}
+            {/each}
+          </section>
+        </Article>
+      {/if}
+
+      {#if skills.tools?.length}
+        <Article title="Инструменты">
+          <section class="flex flex-wrap gap-2 justify-center">
+            {#each skills.tools as { name, color }}
+              {#if name}
+                <Badge {name} {color}/>
+              {/if}
+            {/each}
+          </section>
+        </Article>
+      {/if}
+
+      {#if skills.soft?.length}
+        <Article title="Гибкие навыки">
+          <section class="flex flex-wrap gap-2 justify-center">
+            {#each skills.soft as { name }}
+              {#if name}
+                <Badge {name}/>
+              {/if}
+            {/each}
+          </section>
+        </Article>
+      {/if}
+
+      {#if skills.other?.length}
+        <Article title="Другое">
+          <section class="flex flex-wrap gap-2 justify-center">
+            {#each skills.other as { name }}
+              {#if name}
+                <Badge {name}/>
+              {/if}
+            {/each}
+          </section>
+        </Article>
+      {/if}
+    </Section>
+  {/if}
+
+  {#if experience?.length}
+    <Section title="Опыт работы">
+      {#each experience as { company, position, begin, end, description }}
+        {#if company}
+          <Article title={company}>
+            {#if position}
+              <p><strong>{position}</strong></p>
+            {/if}
+            {#if description}
+              <p class="space-y-1">
+                {#each description.split('\n') as row}
+                  <p>{row}</p>
+                {/each}
+              </p>
+            {/if}
+            {#if begin && end}
+              <p class="text-sm">{begin} — {end}</p>
+            {/if}
+          </Article>
         {/if}
       {/each}
-    </section>
-  </Section>
+    </Section>
+  {/if}
 
-  <Section title="Ключевые навыки">
-    <Article title="Языки программирования">
-      <section class="flex flex-wrap gap-2 justify-center">
-        {#each skills.hard.languages as { name, color }}
+  {#if education.main?.length}
+    <Section title="Образование">
+      {#each education.main as { institution, faculty, specialty, graduation }}
+        {#if institution && faculty && specialty}
+          <Article title={institution}>
+            <p>{faculty}, <strong>{specialty}</strong></p>
+            {#if graduation}
+              <time class="block text-sm">{graduation}</time>
+            {/if}
+          </Article>
+        {/if}
+      {/each}
+    </Section>
+  {/if}
+
+  {#if education.additional?.length}
+    <Section title="Повышение квалификации">
+      {#each education.additional as { organization, name, graduation }}
+        {#if organization && name}
+          <Article title={organization}>
+            <p>{name}</p>
+            {#if graduation}
+              <time class="block text-sm">{graduation}</time>
+            {/if}
+          </Article>
+        {/if}
+      {/each}
+    </Section>
+  {/if}
+
+  {#if languages?.length}
+    <Section title="Знание языков">
+      <section class="flex flex-wrap gap-2">
+        {#each languages as name}
           {#if name}
-            <Badge {name} {color}/>
+            <Badge {name}></Badge>
           {/if}
         {/each}
       </section>
-    </Article>
+    </Section>
+  {/if}
 
-    <Article title="Технологии">
-      <section class="flex flex-wrap gap-2 justify-center">
-        {#each skills.hard.technologies as { name, color }}
-          {#if name}
-            <Badge {name} {color}/>
-          {/if}
-        {/each}
-      </section>
-    </Article>
+  {#if books?.length}
+    <Section title="Прочитано">
+      {#each books as { name, author }}
+        {#if name && author}
+          <Article title={name}>
+            <address class="text-sm">{author}</address>
+          </Article>
+        {/if}
+      {/each}
+    </Section>
+  {/if}
 
-    <Article title="Паттерны">
-      <section class="flex flex-wrap gap-2 justify-center">
-        {#each skills.hard.patterns as { name, color }}
-          {#if name}
-            <Badge {name} {color}/>
-          {/if}
-        {/each}
-      </section>
-    </Article>
-
-    <Article title="Инструменты">
-      <section class="flex flex-wrap gap-2 justify-center">
-        {#each skills.tools as { name, color }}
-          {#if name}
-            <Badge {name} {color}/>
-          {/if}
-        {/each}
-      </section>
-    </Article>
-
-    <Article title="Гибкие навыки">
-      <section class="flex flex-wrap gap-2 justify-center">
-        {#each skills.soft as { name }}
-          {#if name}
-            <Badge {name}/>
-          {/if}
-        {/each}
-      </section>
-    </Article>
-
-    <Article title="Другое">
-      <section class="flex flex-wrap gap-2 justify-center">
-        {#each skills.other as { name }}
-          {#if name}
-            <Badge {name}/>
-          {/if}
-        {/each}
-      </section>
-    </Article>
-  </Section>
-
-  <Section title="Опыт работы">
-    {#each experience as { company, position, begin, end, description }}
-      <Article title={company}>
-        <p><strong>{position}</strong></p>
-        <p class="space-y-1">
-          {#each description.split('\n') as row}
-            <p>{row}</p>
-          {/each}
-        </p>
-        <p class="text-sm">{begin} — {end}</p>
-      </Article>
-    {/each}
-  </Section>
-
-  <Section title="Образование">
-    {#each education.main as { institution, faculty, specialty, graduation }}
-      <Article title={institution}>
-        <p>{faculty}, <strong>{specialty}</strong></p>
-        <time class="block text-sm">{graduation}</time>
-      </Article>
-    {/each}
-  </Section>
-
-  <Section title="Повышение квалификации">
-    {#each education.additional as { organization, name, graduation }}
-      <Article title={organization}>
-        <p>{name}</p>
-        <time class="block text-sm">{graduation}</time>
-      </Article>
-    {/each}
-  </Section>
-
-  <Section title="Знание языков">
-    <section class="flex flex-wrap gap-2">
-      <Badge name="Русский — Родной"></Badge>
-      <Badge name="Английский — A2 — Элементарный"></Badge>
-    </section>
-  </Section>
-
-  <Section title="Прочитано">
-    {#each books as { name, author }}
-      <Article title={name}>
-        <address class="text-sm">{author}</address>
-      </Article>
-    {/each}
+  <Section title="Дополнительные ссылки">
+    <a class="block" href="https://teletype.in/@alexeev.dauwalter">
+      <Teletype/>
+    </a>
   </Section>
 </main>
