@@ -20,9 +20,9 @@
     purple: 'bg-purple-500/60 border-purple-500 hover:shadow-purple-500',
     fuchsia: 'bg-fuchsia-500/60 border-fuchsia-500 hover:shadow-fuchsia-500',
     pink: 'bg-pink-500/60 border-pink-500 hover:shadow-pink-500',
-    rose: 'bg-rose-500/60 border-rose-500 shadow-rose-500'
+    rose: 'bg-rose-500/60 border-rose-500 hover:shadow-rose-500'
   };
 </script>
 
 <span
-    class={`${colors[color]} px-2 py-1 rounded border hover:shadow-md select-none`}>{name}</span>
+    class={`${colors[color]} px-2 py-1 rounded border hover:shadow-md select-none duration-100`}>{name}</span>
