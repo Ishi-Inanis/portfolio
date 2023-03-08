@@ -124,7 +124,31 @@
             name: 'WordPress',
             color: 'sky'
           }],
-          patterns: [],
+          patterns: [{
+            name: 'Decorator',
+            color: ''
+          }, {
+            name: 'Factory',
+            color: ''
+          }, {
+            name: 'Singleton',
+            color: ''
+          }, {
+            name: 'Flyweight',
+            color: ''
+          }, {
+            name: 'Mediator',
+            color: ''
+          }, {
+            name: 'Observer',
+            color: ''
+          }, {
+            name: 'Module',
+            color: ''
+          }, {
+            name: 'Builder',
+            color: ''
+          }],
         },
         soft: [{
           name: 'Умею находить общий язык с командой',
