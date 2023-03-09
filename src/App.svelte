@@ -7,6 +7,7 @@
   import Gitlab from './lib/Gitlab.svelte';
   import Telegram from './lib/Telegram.svelte';
   import Teletype from './lib/Teletype.svelte';
+  import Npm from './lib/Npm.svelte';
 
   const skills = {
         main: [{
@@ -442,8 +443,13 @@
   {/if}
 
   <Section title="Дополнительные ссылки">
-    <a class="block" href="https://teletype.in/@alexeev.dauwalter">
-      <Teletype/>
-    </a>
+    <nav class="flex flex-wrap gap-4 items-center">
+      <a class="block" href="https://teletype.in/@alexeev.dauwalter">
+        <Teletype/>
+      </a>
+      <a class="block" href="https://www.npmjs.com/~ishi-inanis">
+        <Npm/>
+      </a>
+    </nav>
   </Section>
 </main>
