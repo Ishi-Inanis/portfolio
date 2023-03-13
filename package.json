@@ -1,12 +1,11 @@
 {
   "name": "portfolio",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
